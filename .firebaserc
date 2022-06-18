@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ticket-app-crud": {
+      "hosting": {
+        "test-app": [
+          "ticket-app-crud"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ticket-app-crud"
+  }
+}

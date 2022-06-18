@@ -1,0 +1,94 @@
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom"></header>
+
+  <main>
+    <h1>View Tickets.</h1>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>Category</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.category }}
+          </td>
+        </ng-container>
+
+        <!-- Subcategory Column -->
+        <ng-container matColumnDef="subcategory">
+          <th mat-header-cell *matHeaderCellDef>Subcategory</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.subcategory }}
+          </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element" id="status">
+            {{ element.status }}
+          </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="createdOn">
+          <th mat-header-cell *matHeaderCellDef>Date Submitted</th>
+          <td mat-cell *matCellDef="let element" id="createdOn">
+            {{ element.createdOn }}
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openDialog(element)">
+                <mat-icon>assignment</mat-icon>
+                <span>See More</span>
+              </button>
+              <div *ngIf="element.status != 'Closed'">
+                <button mat-menu-item routerLink="updatestatus/{{ element.id }}">
+                  <mat-icon>update</mat-icon>
+                  <span>Update Progress</span>
+                </button>
+              </div>
+              <button mat-menu-item routerLink="trackticket/{{ element.id }}">
+                <mat-icon>drafts</mat-icon>
+                <span>Track Ticket</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+
+    </div>
+
+    <br><br>
+
+    <!-- Back Button -->
+    <button mat-raised-button [routerLink]="['/home']">Back</button>
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Created by the Bootstrap team &middot; &copy; 2021
+  </footer>
+</div>

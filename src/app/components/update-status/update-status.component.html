@@ -1,0 +1,141 @@
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom"></header>
+
+  <main>
+    <h1>Update Ticket Progress for Ticket ID: {{ id }}.</h1>
+
+    <!-- View Ticket Button -->
+    <div class="mb-3">
+      <button mat-raised-button color="primary" (click)="openDialog(id)">
+        View Ticket Details
+      </button>
+    </div>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" #form="ngForm">
+      <!-- Status Select Input -->
+      <div class="mb-3">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label for="status">Update Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let option of options" [value]="option.value">
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('status', 'required')"
+            >Status is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Name Input -->
+      <div class="mb-3">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label for="name">Name</mat-label>
+          <input
+            matInput
+            placeholder="Ali Abdul"
+            formControlName="name"
+            name="name"
+            id="name"
+          />
+          <mat-error *ngIf="hasError('name', 'required')"
+            >Name is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Subject Input -->
+      <div class="mb-3">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label for="subject">Subject</mat-label>
+          <input
+            matInput
+            placeholder="Ticketing App"
+            formControlName="subject"
+            name="subject"
+            id="subject"
+          />
+          <mat-error *ngIf="hasError('subject', 'required')"
+            >Subject is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Comment Input -->
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <quill-editor
+          formControlName="comment"
+          name="comment"
+          [styles]="{ 'min-height': '200px', 'border-radius': '10px' }"
+          [required]="true"
+          appearance="outline"
+        >
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <select class="ql-font">
+                <option selected></option>
+                <option value="serif"></option>
+                <option value="monospace"></option>
+              </select>
+              <select class="ql-size">
+                <option value="small"></option>
+                <option selected></option>
+                <option value="large"></option>
+                <option value="huge"></option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold"></button>
+              <button class="ql-italic"></button>
+              <button class="ql-underline"></button>
+              <button class="ql-strike"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-color"></select>
+              <select class="ql-background"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-list" value="ordered"></button>
+              <button class="ql-list" value="bullet"></button>
+              <select class="ql-align">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+        <div
+          class="textarea"
+          *ngIf="hasError('comment', 'required') && form.submitted"
+        >
+          Description is required
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!categoryForm.valid"
+        style="margin-right: 5px"
+      >
+        Submit
+      </button>
+
+      <!-- Back Button -->
+      <button mat-raised-button [routerLink]="['/viewtickets']">Back</button>
+    </form>
+
+    <!-- <div class="pt-5 my-5 border-top">
+      <app-comment-list></app-comment-list>
+    </div> -->
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Created by the Bootstrap team &middot; &copy; 2021
+  </footer>
+</div>

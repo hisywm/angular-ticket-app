@@ -1,0 +1,21 @@
+<h1>Ticket Details.</h1>
+
+<p>ID: {{ id }}</p>
+<p>Email: {{ email }}</p>
+<p>Subject: {{ subject }}</p>
+<p>
+  Description: <span *ngIf="show" [innerHTML]="description"></span>
+  <a mat-button href="javascript:void()" (click)="toggleText()">
+    {{ show ? "Hide" : "Show" }}</a
+  >
+</p>
+<p>Created On: {{ createdOn }}</p>
+<p>
+  Status: <span style="color: green">{{ status }}</span>
+</p>
+<p>Attachment(s):</p>
+<img
+  *ngFor="let image of images"
+  [src]="image"
+  style="margin: 3px; width: 500px; height: 500px"
+/>

@@ -1,0 +1,188 @@
+<router-outlet>
+  <div class="col-lg-8 mx-auto p-3 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom"></header>
+
+    <main>
+      <h1>Please fill in the details below.</h1>
+      <form [formGroup]="categoryForm" (submit)="onSubmit()" #form="ngForm">
+        <div class="mb-3">
+          <!-- Category Input -->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label for="category">Select Support Category</mat-label>
+            <mat-select
+              formControlName="category"
+              (selectionChange)="onCategoryChange()"
+            >
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('category', 'required')"
+              >Category is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Subcategory Input -->
+        <div class="mb-3">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label for="subcategory">Select Support Subcategory</mat-label>
+            <mat-select
+              formControlName="subcategory"
+              (selectionChange)="onSubcategoryChange($event)"
+            >
+              <mat-option
+                *ngFor="let subcategory of subcategories"
+                [value]="subcategory.name"
+              >
+                {{ subcategory.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('subcategory', 'required')"
+              >Subcategory is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Email Input -->
+        <div class="mb-3">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label for="email">Email</mat-label>
+            <input
+              matInput
+              placeholder="aiman@gmail.com"
+              formControlName="email"
+              name="email"
+              id="email"
+            />
+            <mat-hint>We'll never share your email with anyone else.</mat-hint>
+            <mat-error *ngIf="hasError('email', 'required')"
+              >Email is required</mat-error
+            >
+            <mat-error *ngIf="hasError('email', 'email')"
+              >Invalid email format</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Subject Input -->
+        <div class="mb-3">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label for="subject">Subject</mat-label>
+            <input
+              matInput
+              placeholder="Internet Connection Issue"
+              formControlName="subject"
+              name="subject"
+              id="subject"
+            />
+            <mat-error *ngIf="hasError('subject', 'required')"
+              >Subject is required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <!-- Description Textarea -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <quill-editor
+            formControlName="description"
+            name="description"
+            [styles]="{ 'min-height': '200px', 'border-radius': '10px' }"
+            [required]="true"
+            appearance="outline"
+          >
+            <div quill-editor-toolbar>
+              <span class="ql-formats">
+                <select class="ql-font">
+                  <option selected></option>
+                  <option value="serif"></option>
+                  <option value="monospace"></option>
+                </select>
+                <select class="ql-size">
+                  <option value="small"></option>
+                  <option selected></option>
+                  <option value="large"></option>
+                  <option value="huge"></option>
+                </select>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-bold"></button>
+                <button class="ql-italic"></button>
+                <button class="ql-underline"></button>
+                <button class="ql-strike"></button>
+              </span>
+              <span class="ql-formats">
+                <select class="ql-color"></select>
+                <select class="ql-background"></select>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-list" value="ordered"></button>
+                <button class="ql-list" value="bullet"></button>
+                <select class="ql-align">
+                  <option selected></option>
+                  <option value="center"></option>
+                  <option value="right"></option>
+                  <option value="justify"></option>
+                </select>
+              </span>
+            </div>
+          </quill-editor>
+          <div
+            class="textarea"
+            *ngIf="hasError('description', 'required') && form.submitted"
+          >
+            Description is required
+          </div>
+        </div>
+
+        <!-- Attachment Input -->
+        <div class="mb-3">
+          <label for="formFileMultiple" class="form-label">Attachment(s)</label>
+          <input
+            class="form-control"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/png, image/jpeg"
+            multiple
+          />
+          <div *ngIf="hasError('image', 'required') && form.submitted">
+            Image is required
+          </div>
+          <br />
+          <br />
+          <!-- Preview back the uploaded file -->
+          <img
+            *ngFor="let image of images"
+            [src]="image"
+            height="150"
+            width="200px"
+            style="margin: 3px"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!categoryForm.valid"
+          style="margin-right: 5px"
+        >
+          Submit
+        </button>
+
+        <!-- Back Button -->
+        <button mat-raised-button [routerLink]="['/home']">Back</button>
+      </form>
+    </main>
+
+    <footer class="pt-5 my-5 text-muted border-top">
+      Created by the Bootstrap team &middot; &copy; 2021
+    </footer>
+  </div>
+</router-outlet>
