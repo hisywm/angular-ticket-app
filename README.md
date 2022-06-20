@@ -1,4 +1,4 @@
-# TestApp
+# MerchantApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
@@ -6,22 +6,42 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Project Introduction
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This test project was developed to help me learn using Angular Material and basic CRUD using Web LocalStorage. For this project, I was assigned to create a ticketing web application. Scroll down below to see some screenshot of the results.
 
-## Build
+Some Introduction for the project - 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+"Support ticket system were implemented to ease the use of submitting a support ticket for users and staff which let them communicate between each other more seamlessly. Users can use the system to submit a ticket and check for the ticket status without having to contact staffs to ask for it.
 
-## Running unit tests
+It also helps staff to provide feedback on the submitted ticket to the customers by making a comment on the submitted ticket. It will also automatically send an email to both parties which will inform them each update on the ticket status."
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Screenshots
 
-## Running end-to-end tests
+1. Picture 1 shows the main homepage when user enters the application. It has 3 main buttons for user to navigate between pages.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Home Page](https://imgur.com/YM83ePo.png "Home Page")
 
-## Further help
+2. Picture 2 shows the main function of this application which is submitting a ticket page. Users can fill out the details about the problem to complaint or seeking for assistance from staff. There are 6 input fields that requires user to fill out. User can also attach an attachment such as image to be more specific about the support ticket.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Create Ticket Page](https://imgur.com/vScZ938.png "Create Ticket Page")
+
+3. After submitting a ticket, users will be navigated to another page which is View Tickets Page in Picture 3.
+
+![View Tickets Page](https://imgur.com/z850dDI.png "View Tickets Page")
+
+4. Users can click the button in Action column to see more functionality. In the Action column, there is See More, Update Progress & Track Ticket button for users to click and navigate to different pages shown in Picture 4.
+
+![View Tickets Page 2](https://imgur.com/qqfgDYT.png "View Tickets Page 2")
+
+5. Users can click the button in Action column to see more functionality. In the Action column, there is See More, Update Progress & Track Ticket button for users to click and navigate to different pages shown in Picture 5.
+
+![View Tickets Page 3](https://imgur.com/Ll66x9N.png "View Tickets Page 3")
+
+6. This page is made for staff to add comments about the ticket or updates. Staff can update the ticket status from Open to In Progress & Closed which means the ticket has been resolved as shown in Picture 6.
+
+![View Tickets Page 3](https://imgur.com/GbWK5UM.png "View Tickets Page 3")
+
+7. Lastly, we have track ticket page. In this page, user can search by their ticket ID and see the progress or status of their ticket if there is any update from the staff.
+
+![Track Ticket Page](https://imgur.com/yfytkyl.png "Track Ticket Page")
