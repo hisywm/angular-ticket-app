@@ -7,15 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { DialogContentComponent } from '../dialog-content/dialog-content.component';
 
-// export interface Ticket {
-//   category: string;
-//   subcategory: string;
-//   email: string;
-//   subject: string;
-//   description: string;
-//   images: any;
-// }
-
 @Component({
   selector: 'app-track-ticket',
   templateUrl: './track-ticket.component.html',
@@ -47,19 +38,14 @@ export class TrackTicketComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Validation & declaration for the formgroup
     this.categoryForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
+      id: new FormControl(this.route.snapshot.params.id, [Validators.required]),
     });
 
     this.urlID = this.route.snapshot.params.id;
-    // console.log('ID:', this.urlID);
 
     var obj = JSON.parse(localStorage.getItem('formdata')!);
     const ticket = obj.filter((x: any) => x.id === parseInt(this.urlID));
-    // console.log(ticket[0].status);
-    // console.log(ticket[this.urlID - 1].status);
-
     this.status = ticket[0].status;
     this.localStorageID = ticket[0].id;
     this.createdOn = ticket[0].createdOn;
@@ -75,7 +61,6 @@ export class TrackTicketComponent implements OnInit {
     }
 
     this.isShowDiv = false;
-
     this.checkStatusAfterThreeDays();
   }
 

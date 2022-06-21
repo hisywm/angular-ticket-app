@@ -2,7 +2,6 @@ import { HttpService } from '../../services/http.service';
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../models/Ticket';
 import { Category } from '../../models/Category';
-import { Subcategory } from '../../models/Subcategory';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +10,6 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPopupComponent } from '../dialog-popup/dialog-popup.component';
-import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -27,7 +25,6 @@ export class CreateTicketComponent implements OnInit {
   image!: any;
   tickets: Ticket[] = [];
   categories!: Category[];
-  subcategories!: Subcategory[];
   images: any = [];
   imgResultBeforeCompress: any = [];
   imgResultAfterCompress: any = [];
@@ -47,8 +44,7 @@ export class CreateTicketComponent implements OnInit {
     private router: Router,
     private imageCompress: NgxImageCompressService,
     private datepipe: DatePipe,
-    private dialog: MatDialog,
-    private schedule: ScheduleService
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -59,11 +55,10 @@ export class CreateTicketComponent implements OnInit {
     this.categoryForm = new FormGroup({
       id: new FormControl(''),
       category: new FormControl('', [Validators.required]),
-      subcategory: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       subject: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      image: new FormControl('', [Validators.required]),
+      image: new FormControl(''),
       createdOn: new FormControl(''),
       status: new FormControl(''),
       date: new FormControl(''),
@@ -116,24 +111,10 @@ export class CreateTicketComponent implements OnInit {
     return this.categoryForm.controls[controlName].hasError(errorName);
   };
 
-  // Get subcategories based on main category
-  onCategoryChange() {
-    this.subcategories = this.dataService.fetchSubcategories(
-      this.categoryForm.get('category')?.value.id
-    );
-    this.category = this.categoryForm.get('category')?.value.name;
-    // console.log(this.category);
-  }
-
-  // Get the value of selected subcategory
-  onSubcategoryChange(id: any) {
-    let subcategory = id.value;
-    this.subcategory = subcategory;
-  }
-
   // Submit button function
   onSubmit() {
     if (this.categoryForm.valid) {
+      this.category = this.categoryForm.get('category')?.value.name;
       this.email = this.categoryForm.get('email')?.value;
       console.log(this.email);
 
@@ -170,7 +151,7 @@ export class CreateTicketComponent implements OnInit {
 
       this.openDialog(this.newID);
 
-      /** 
+      /**
       // Sending email after 3 days
       var date = new Date();
       let data = {
@@ -263,6 +244,7 @@ export class CreateTicketComponent implements OnInit {
         dateOfTicketSubmitted: today,
         dateAfterThreeDays: threedays,
       };
+
       JSON.stringify(ticket);
       this.http.postTicket(ticket).subscribe(() => {
         console.log('Successfully post ticket to JSON server');

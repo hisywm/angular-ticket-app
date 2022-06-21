@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ticket } from '../models/Ticket';
-import { TreeData } from '../models/Tree';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,31 +30,4 @@ export class HttpService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Ticket>(url);
   }
-
-  private treeUrl = 'http://localhost:5000/treeData';
-
-  getTreeData(): Observable<TreeData[]> {
-    return this.http.get<TreeData[]>(this.treeUrl);
-  }
-
-  getTreeDatas() {
-    return new Promise((resolve, reject) => {
-      this.http.get<TreeData[]>(this.treeUrl).subscribe((res) => {
-        console.log(res);
-
-        resolve(res);
-      });
-    });
-  }
-
-  // uploadImage(image: File): Observable<Response> {
-  //   const formData = new FormData();
-  //   formData.append('image', image);
-  //   return this.http.post<Response>(this.apiUrl, formData);
-  // }
-
-  // deleteTask(ticket: Ticket): Observable<Task> {
-  //   const url = `${this.apiUrl}/${ticket.id}`;
-  //   return this.http.delete<Task>(url);
-  // }
 }

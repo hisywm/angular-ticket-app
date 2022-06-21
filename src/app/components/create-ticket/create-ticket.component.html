@@ -9,10 +9,7 @@
           <!-- Category Input -->
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label for="category">Select Support Category</mat-label>
-            <mat-select
-              formControlName="category"
-              (selectionChange)="onCategoryChange()"
-            >
+            <mat-select formControlName="category">
               <mat-option
                 *ngFor="let category of categories"
                 [value]="category"
@@ -22,27 +19,6 @@
             </mat-select>
             <mat-error *ngIf="hasError('category', 'required')"
               >Category is required</mat-error
-            >
-          </mat-form-field>
-        </div>
-
-        <!-- Subcategory Input -->
-        <div class="mb-3">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label for="subcategory">Select Support Subcategory</mat-label>
-            <mat-select
-              formControlName="subcategory"
-              (selectionChange)="onSubcategoryChange($event)"
-            >
-              <mat-option
-                *ngFor="let subcategory of subcategories"
-                [value]="subcategory.name"
-              >
-                {{ subcategory.name }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="hasError('subcategory', 'required')"
-              >Subcategory is required</mat-error
             >
           </mat-form-field>
         </div>

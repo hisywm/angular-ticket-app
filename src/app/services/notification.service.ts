@@ -14,12 +14,4 @@ export class NotificationService {
         console.log('Sent Email');
       });
   }
-
-  // public getData(data: any) {
-  //   return this.http
-  //     .post('http://localhost:3000/getData', data)
-  //     .subscribe((data) => {
-  //       console.log('Sent Data');
-  //     });
-  // }
 }

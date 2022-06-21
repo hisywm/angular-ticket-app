@@ -6,8 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TrackTicketComponent } from './components/track-ticket/track-ticket.component';
 import { TrackYourTicketComponent } from './components/track-your-ticket/track-your-ticket.component';
-import { TreeNewComponent } from './components/tree-new/tree-new.component';
-import { TreeComponent } from './components/tree/tree.component';
 import { UpdateStatusComponent } from './components/update-status/update-status.component';
 import { ViewTicketComponent } from './components/view-ticket/view-ticket.component';
 
@@ -19,8 +17,6 @@ const routes: Routes = [
   { path: 'viewtickets/updatestatus/:id', component: UpdateStatusComponent },
   { path: 'viewtickets/trackticket/:id', component: TrackTicketComponent },
   { path: 'track-your-ticket', component: TrackYourTicketComponent },
-  { path: 'tree', component: TreeComponent },
-  { path: 'tree-new', component: TreeNewComponent },
   { path: 'admin', component: AdminDashboardComponent },
   { path: '**', component: NotFoundComponent },
 ];

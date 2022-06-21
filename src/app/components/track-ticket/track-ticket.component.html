@@ -14,7 +14,7 @@
       <div class="mb-3">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label for="id">ID</mat-label>
-          <input matInput formControlName="id" name="id" id="id" />
+          <input matInput formControlName="id" />
           <mat-error *ngIf="hasError('id', 'required')"
             >ID is required</mat-error
           >
@@ -37,7 +37,7 @@
       <button mat-raised-button [routerLink]="['/viewtickets']">Back</button>
     </form>
 
-    <div [hidden]="isShowDiv">
+    <div [hidden]="isShowDiv" class="border-bottom mb-3">
       <h1>Ticket Status.</h1>
 
       <!-- View Ticket Button -->
@@ -49,57 +49,23 @@
         View Ticket Details
       </button>
 
-      <mat-stepper linear #stepper [selectedIndex]="currentStep">
+      <mat-stepper [selectedIndex]="currentStep" [linear]="true" #stepper>
         <mat-step>
           <ng-template matStepLabel>Open</ng-template>
-          <ng-template matStepContent>
-            <!-- <p>Date Submitted: {{ createdOn }}</p>
-            <p>Category: {{ category }}</p>
-            <p>Subcategory: {{ subcategory }}</p>
-            <p>Subject: {{ subject }}</p>
-            <p>Description: <span [innerHTML]="description"></span></p> -->
-
-            <!-- <p>Ticket ID: {{ localStorageID }}</p>
-              <p>Date Submitted: {{ createdOn }}</p> -->
-
-            <app-status-comment-list
-              [status]="'Open'"
-            ></app-status-comment-list>
-          </ng-template>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>In Progress</ng-template>
-          <ng-template matStepContent>
-            <app-status-comment-list
-              [status]="'In Progress'"
-            ></app-status-comment-list>
-          </ng-template>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Closed</ng-template>
-          <ng-template matStepContent>
-            <app-status-comment-list
-              [status]="'Closed'"
-            ></app-status-comment-list>
-          </ng-template>
         </mat-step>
       </mat-stepper>
     </div>
+    <div class="mb-3 border-bottom">
+      <app-status-comment-list></app-status-comment-list>
+    </div>
 
     <h1>{{ text }}</h1>
-
-    <div class="pt-5 my-5 border-top" [hidden]="isShowDiv">
-      <app-comment-list></app-comment-list>
-
-      <!-- Add Comment Button -->
-      <!-- <button
-        mat-raised-button
-        color="primary"
-        routerLink="/viewtickets/updatestatus/{{ id }}"
-      >
-        Add Comment
-      </button> -->
-    </div>
   </main>
   <footer class="pt-5 my-5 text-muted border-top">
     Created by the Bootstrap team &middot; &copy; 2021

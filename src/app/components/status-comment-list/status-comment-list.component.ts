@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -19,33 +19,36 @@ export class StatusCommentListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'comment', 'status', 'date'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Input() status: any;
 
   dataSource: any;
   public showComment: { [key: number]: boolean } = {};
   id: any;
   ticketList: any = [];
+  text!: string;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // Get Ticket ID
     this.id = this.route.snapshot.params.id;
     console.log('ID:', this.id);
 
     var obj = JSON.parse(localStorage.getItem('comments')!);
     // Get only comments where Ticket Id = Id
-    const ticket = obj.filter(
-      (x: any) => x.id === this.id && x.status === this.status
-    );
-    // console.log(ticket);
 
-    this.dataSource = new MatTableDataSource(ticket);
-
-    for (var i = 0; i < obj.length; i++) {
-      const id = { id: obj[i].id };
-      this.id = id.id;
+    if (localStorage.getItem('comments') == null) {
+      console.log('No data');
+      this.text = 'No data.';
+      this.dataSource = new MatTableDataSource(ticket);
+    } else {
+      this.text = 'No data.';
+      try {
+        var ticket = obj.filter((x: any) => x.id === this.id);
+      } catch (e) {
+        console.log('Error', e);
+      }
+      this.dataSource = new MatTableDataSource(ticket);
     }
-
     // this.dataSource.filterPredicate = (data: Element) => {
     //   return data.id == 1;
     // };

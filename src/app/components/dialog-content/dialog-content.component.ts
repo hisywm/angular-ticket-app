@@ -9,7 +9,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogContentComponent implements OnInit {
   id: any;
   category!: string;
-  subcategory!: string;
   email!: string;
   subject!: string;
   description: any;
@@ -27,7 +26,6 @@ export class DialogContentComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.data.id;
     this.category = this.data.category;
-    this.subcategory = this.data.subcategory;
     this.email = this.data.email;
     this.subject = this.data.subject;
     this.description = this.data.description;
@@ -44,7 +42,6 @@ export class DialogContentComponent implements OnInit {
           {
             id: obj[i].id,
             category: obj[i].category,
-            subcategory: obj[i].subcategory,
             email: obj[i].email,
             subject: obj[i].subject,
             description: obj[i].description,
@@ -56,7 +53,6 @@ export class DialogContentComponent implements OnInit {
 
         this.id = obj[i].id;
         this.category = obj[i].category;
-        this.subcategory = obj[i].subcategory;
         this.email = obj[i].email;
         this.subject = obj[i].subject;
         this.description = obj[i].description;

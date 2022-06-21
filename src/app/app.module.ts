@@ -1,8 +1,4 @@
-import {
-  NgModule,
-  CUSTOM_ELEMENTS_SCHEMA,
-  APP_INITIALIZER,
-} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +16,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewTicketComponent } from './components/view-ticket/view-ticket.component';
-import { environment } from 'src/environments/environment';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MatTableModule } from '@angular/material/table';
@@ -36,17 +29,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 import { UpdateStatusComponent } from './components/update-status/update-status.component';
 import { MatButtonModule } from '@angular/material/button';
-import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { DialogPopupComponent } from './components/dialog-popup/dialog-popup.component';
 import { TrackYourTicketComponent } from './components/track-your-ticket/track-your-ticket.component';
 import { StatusCommentListComponent } from './components/status-comment-list/status-comment-list.component';
 import { MessageService } from './services/message.service';
-import { ScheduleService } from './services/schedule.service';
 import { NotificationService } from './services/notification.service';
 import { MatTreeModule } from '@angular/material/tree';
-import { TreeComponent } from './components/tree/tree.component';
-import { TreeNewComponent } from './components/tree-new/tree-new.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
@@ -60,12 +49,9 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     TrackTicketComponent,
     DialogContentComponent,
     UpdateStatusComponent,
-    CommentListComponent,
     DialogPopupComponent,
     TrackYourTicketComponent,
     StatusCommentListComponent,
-    TreeComponent,
-    TreeNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,8 +68,6 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     BrowserAnimationsModule,
     MatInputModule,
     MatSnackBarModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -100,7 +84,6 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     NgxImageCompressService,
     DatePipe,
     MessageService,
-    ScheduleService,
     NotificationService,
   ],
   bootstrap: [AppComponent],
